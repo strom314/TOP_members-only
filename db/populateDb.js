@@ -1,3 +1,5 @@
+const {Client} = require("pg")
+
 const SQL = `
 CREATE TABLE IF NOT EXIST users(
 id PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -17,3 +19,19 @@ title VARCHAR(50),
 text VARCHAR(255)
 );
 `;
+
+async function main() {
+  console.log("seeding...");
+  const client = new Client({
+    connectionString: process.env.CONNECTION_STRING,
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  });
+  await client.connect();
+  await client.query(SQL);
+  await client.end();
+  console.log("done");
+}
+
+module.exports = main;
