@@ -1,4 +1,6 @@
 const { body } = require("express-validator");
+const db = require("../db/query");
+
 const validateSignUp = [
   body("firstName")
     .trim()
@@ -14,6 +16,13 @@ const validateSignUp = [
     .trim()
     .notEmpty()
     .withMessage("Username is required")
+    .custom(async (value) => {
+      const existingUsername = await db.findUserByUsername(value);
+      if (existingUsername) {
+        throw new Error("This username already exsits");
+      }
+      return true;
+    })
     .escape(),
   body("password")
     .isLength({ min: 8 })
