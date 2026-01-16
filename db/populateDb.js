@@ -1,0 +1,19 @@
+const SQL = `
+CREATE TABLE IF NOT EXIST users(
+id PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+first_name VARCHAR(50),
+last_name VARCHAR(50),
+username VARCHAR(50),
+password VARCHAR(50),
+member BOOLEAN,
+admin BOOLEAN
+);
+
+CREATE TABLE IF NOT EXIST messages(
+id PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+user_id INT,
+date INT,
+title VARCHAR(50),
+text VARCHAR(255)
+);
+`;
