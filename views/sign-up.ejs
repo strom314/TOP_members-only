@@ -7,6 +7,7 @@
   </head>
   <body>
     <h1>sign up</h1>
+    <%- include("./partials/errors.ejs") %>
     <form action="/sign-up" method="post">
       <label for="firstName">first name</label>
       <input type="text" name="firstName" id="firstName" />
@@ -22,6 +23,11 @@
 
       <label for="repeatPassword">repeat password</label>
       <input type="password" name="repeatPassword" id="repeatPassword" />
+
+      <label for="isAdmin">isAdmin</label>
+      <input type="checkbox" name="isAdmin" id="isAdmin" />
+
+      <button type="submit">sign up</button>
     </form>
   </body>
 </html>
