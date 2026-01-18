@@ -9,6 +9,8 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: false }));
 
+populateDb();
+
 app.use("/", router);
 
 const PORT = 3000;
