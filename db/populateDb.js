@@ -6,7 +6,7 @@ id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
 first_name VARCHAR(50),
 last_name VARCHAR(50),
 username VARCHAR(50),
-password VARCHAR(50),
+password VARCHAR(255),
 member BOOLEAN,
 admin BOOLEAN
 );
