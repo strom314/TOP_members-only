@@ -22,7 +22,13 @@ async function postSignUp(req, res) {
     hashedPassword,
     data.isAdmin
   );
-  res.redirect("/login");
+  res.redirect("/log-in");
 }
 
-module.exports = { getIndex, getSignUp, postSignUp };
+function getLogIn(req, res) {
+  res.render("log-in");
+}
+
+
+
+module.exports = { getIndex, getSignUp, postSignUp, getLogIn };
