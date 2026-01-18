@@ -19,4 +19,11 @@ async function findUserById(id) {
   return rows[0];
 }
 
-module.exports = { addUser, findUserByUsername, findUserById };
+async function addMessage(userId, title, text) {
+  await pool.query(
+    "INSERT INTO messages(user_id, title, text) VALUES ($1, $2, $3)",
+    [userId, title, text]
+  );
+}
+
+module.exports = { addUser, findUserByUsername, findUserById, addMessage };

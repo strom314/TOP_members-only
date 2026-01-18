@@ -51,6 +51,14 @@ function getLogOut(req, res, next) {
   res.redirect("/");
 }
 
+function getNewMessage(req, res) {
+  res.render("new-message");
+}
+async function postNewMessage(req, res) {
+  db.addMessage(req.user.id, req.body.title, req.body.text);
+  res.redirect("/");
+}
+
 module.exports = {
   getIndex,
   getSignUp,
@@ -58,4 +66,6 @@ module.exports = {
   getLogIn,
   postLogIn,
   getLogOut,
+  getNewMessage,
+  postNewMessage,
 };
