@@ -29,6 +29,14 @@ function getLogIn(req, res) {
   res.render("log-in");
 }
 
+function postLogIn(req, res, next) {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).render("log-in", { errors: errors.array() });
+  }
+  next();
+}
+
 function getLogOut(req, res, next) {
   req.logout((error) => {
     if (error) {
@@ -38,4 +46,11 @@ function getLogOut(req, res, next) {
   res.redirect("/");
 }
 
-module.exports = { getIndex, getSignUp, postSignUp, getLogIn, getLogOut };
+module.exports = {
+  getIndex,
+  getSignUp,
+  postSignUp,
+  getLogIn,
+  postLogIn,
+  getLogOut,
+};

@@ -37,7 +37,12 @@ const validateSignUp = [
 ];
 
 const validateLogin = [
-  body("username").trim().notEmpty().withMessage("username is required"),
+  body("username")
+    .trim()
+    .notEmpty()
+    .withMessage("username is required")
+    .isLength({ max: 50 })
+    .withMessage("username cannot be over 50 characters"),
   body("password").trim().notEmpty().withMessage("password is required"),
 ];
 module.exports = { validateSignUp, validateLogin };

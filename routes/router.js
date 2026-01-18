@@ -13,6 +13,7 @@ router.get("/log-in", controller.getLogIn);
 router.post(
   "/log-in",
   validator.validateLogin,
+  controller.postLogIn,
   passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/log-in",
