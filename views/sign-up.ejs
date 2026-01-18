@@ -10,13 +10,31 @@
     <%- include("./partials/errors.ejs") %>
     <form action="/sign-up" method="post">
       <label for="firstName">first name</label>
-      <input type="text" name="firstName" id="firstName" />
+      <input
+        type="text"
+        name="firstName"
+        id="firstName"
+        required
+        value="<%= locals.prevInput ? locals.prevInput.firstName : '' %>"
+      />
 
       <label for="lastName">last name</label>
-      <input type="text" name="lastName" id="lastName" />
+      <input
+        type="text"
+        name="lastName"
+        id="lastName"
+        required
+        value="<%= locals.prevInput ? locals.prevInput.lastName : '' %>"
+      />
 
       <label for="username">username</label>
-      <input type="text" name="username" id="username" />
+      <input
+        type="text"
+        name="username"
+        id="username"
+        required
+        value="<%= locals.prevInput ? locals.prevInput.username : '' %>"
+      />
 
       <label for="password">password</label>
       <input type="password" name="password" id="password" />

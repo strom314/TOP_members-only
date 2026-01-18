@@ -11,7 +11,10 @@ function getSignUp(req, res) {
 async function postSignUp(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).render("sign-up", { errors: errors.array() });
+    return res.status(400).render("sign-up", {
+      errors: errors.array(),
+      prevInput: req.body,
+    });
   }
   const data = matchedData(req);
   const hashedPassword = await bcrypt.hash(data.password, 10);
@@ -32,7 +35,9 @@ function getLogIn(req, res) {
 function postLogIn(req, res, next) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).render("log-in", { errors: errors.array() });
+    return res.status(400).render("log-in", {
+      errors: errors.array(),
+    });
   }
   next();
 }
