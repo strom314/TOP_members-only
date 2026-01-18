@@ -10,10 +10,10 @@
     <%- include("./partials/errors.ejs") %>
     <form action="/log-in" method="post">
       <label for="username">username</label>
-      <input type="text" name="username" id="username" />
+      <input type="text" name="username" id="username" required />
 
       <label for="password">password</label>
-      <input type="password" name="password" id="password" />
+      <input type="password" name="password" id="password" required />
 
       <button type="submit">log in</button>
     </form>

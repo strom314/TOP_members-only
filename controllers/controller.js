@@ -29,6 +29,13 @@ function getLogIn(req, res) {
   res.render("log-in");
 }
 
+function getLogOut(req, res, next) {
+  req.logout((error) => {
+    if (error) {
+      next(error);
+    }
+  });
+  res.redirect("/");
+}
 
-
-module.exports = { getIndex, getSignUp, postSignUp, getLogIn };
+module.exports = { getIndex, getSignUp, postSignUp, getLogIn, getLogOut };

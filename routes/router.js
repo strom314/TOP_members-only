@@ -12,10 +12,12 @@ router.post("/sign-up", validator.validateSignUp, controller.postSignUp);
 router.get("/log-in", controller.getLogIn);
 router.post(
   "/log-in",
+  validator.validateLogin,
   passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/log-in",
   })
 );
 
+router.get("/log-out", controller.getLogOut);
 module.exports = router;

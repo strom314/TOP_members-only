@@ -36,4 +36,8 @@ const validateSignUp = [
   body("isAdmin").optional().toBoolean(),
 ];
 
-module.exports = { validateSignUp };
+const validateLogin = [
+  body("username").trim().notEmpty().withMessage("username is required"),
+  body("password").trim().notEmpty().withMessage("password is required"),
+];
+module.exports = { validateSignUp, validateLogin };
