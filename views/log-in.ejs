@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=`, initial-scale=1.0" />
+    <title>log in</title>
+  </head>
+  <body>
+    <h1>log in</h1>
+    <%- include("./partials/errors.ejs") %>
+    <form action="/log-in" method="post">
+      <label for="username">username</label>
+      <input type="text" name="username" id="username" />
+
+      <label for="password">password</label>
+      <input type="password" name="password" id="password" />
+
+      <button type="submit">log in</button>
+    </form>
+  </body>
+</html>
