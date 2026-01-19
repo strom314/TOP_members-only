@@ -20,9 +20,10 @@ async function findUserById(id) {
 }
 
 async function addMessage(userId, title, text) {
+  const date = new Date();
   await pool.query(
-    "INSERT INTO messages(user_id, title, text) VALUES ($1, $2, $3)",
-    [userId, title, text]
+    "INSERT INTO messages(user_id, date, title, text) VALUES ($1, $2, $3, $4)",
+    [userId, date.toLocaleDateString(), title, text]
   );
 }
 
