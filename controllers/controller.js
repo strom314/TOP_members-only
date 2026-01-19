@@ -1,6 +1,7 @@
 const db = require("../db/query");
 const { validationResult, matchedData } = require("express-validator");
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
 
 async function getIndex(req, res) {
   const messages = await db.getAllMessages();
@@ -90,7 +91,7 @@ async function getDeleteMessage(req, res) {
 }
 
 function checkAuthentificated(req, res, next) {
-  if (req.isAuthentificated()) {
+  if (req.isAuthenticated()) {
     next();
   } else {
     res.redirect("/login");
