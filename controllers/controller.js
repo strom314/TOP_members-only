@@ -67,7 +67,7 @@ function getNewMessage(req, res) {
   res.render("new-message");
 }
 async function postNewMessage(req, res) {
-  db.addMessage(req.user.id, req.body.title, req.body.text);
+  await db.addMessage(req.user.id, req.body.title, req.body.text);
   res.redirect("/");
 }
 
@@ -89,6 +89,14 @@ async function getDeleteMessage(req, res) {
   }
 }
 
+function checkAuthentificated(req, res, next) {
+  if (req.isAuthentificated()) {
+    next();
+  } else {
+    res.redirect("/login");
+  }
+}
+
 module.exports = {
   getIndex,
   getSignUp,
@@ -101,4 +109,5 @@ module.exports = {
   getAdmin,
   postAdmin,
   getDeleteMessage,
+  checkAuthentificated,
 };

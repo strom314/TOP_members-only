@@ -22,10 +22,22 @@ router.post(
 
 router.get("/log-out", controller.getLogOut);
 
-router.get("/new-message", controller.getNewMessage);
-router.post("/new-message", controller.postNewMessage);
-router.get("/:messageId/delete", controller.getDeleteMessage);
+router.get(
+  "/new-message",
+  controller.checkAuthentificated,
+  controller.getNewMessage,
+);
+router.post(
+  "/new-message",
+  controller.checkAuthentificated,
+  controller.postNewMessage,
+);
+router.get(
+  "/:messageId/delete",
+  controller.checkAuthentificated,
+  controller.getDeleteMessage,
+);
 
-router.get("/admin", controller.getAdmin);
-router.post("/admin", controller.postAdmin);
+router.get("/admin", controller.checkAuthentificated, controller.getAdmin);
+router.post("/admin", controller.checkAuthentificated, controller.postAdmin);
 module.exports = router;

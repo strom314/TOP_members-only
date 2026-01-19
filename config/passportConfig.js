@@ -10,7 +10,7 @@ const passportStrategy = new LocalStrategy(async (username, password, done) => {
     if (!user) {
       return done(null, false, { message: "Incorrect username" });
     }
-    const match = bcrypt.compare(password, user.password);
+    const match = await bcrypt.compare(password, user.password);
     if (!match) {
       return done(null, false, { message: "Incorrect password" });
     }
