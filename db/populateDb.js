@@ -31,15 +31,19 @@ ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFE
 CREATE INDEX "IDX_session_expire" ON "session" ("expire");
 `;
 
+let needToPopulate = true;
 async function main() {
-  console.log("seeding...");
-  const client = new Client({
-    connectionString: process.env.CONNECTION_STRING,
-  });
-  await client.connect();
-  await client.query(SQL);
-  await client.end();
-  console.log("done");
+  if (needToPopulate) {
+    console.log("seeding...");
+    const client = new Client({
+      connectionString: process.env.CONNECTION_STRING,
+    });
+    await client.connect();
+    await client.query(SQL);
+    await client.end();
+    console.log("done");
+    needToPopulate = false;
+  }
 }
 
 module.exports = main;
