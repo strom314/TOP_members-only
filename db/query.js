@@ -26,4 +26,15 @@ async function addMessage(userId, title, text) {
   );
 }
 
-module.exports = { addUser, findUserByUsername, findUserById, addMessage };
+async function getAllMessages() {
+  const { rows } = await pool.query("SELECT * FROM messages");
+  return rows;
+}
+
+module.exports = {
+  addUser,
+  findUserByUsername,
+  findUserById,
+  addMessage,
+  getAllMessages,
+};

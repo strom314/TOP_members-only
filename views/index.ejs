@@ -7,12 +7,16 @@
   </head>
   <body>
     <h1>home</h1>
-    <%- include("./partials/welcome") %>
-    <a href="/log-in">log in</a>
-    <a href="/sign-up">sign up</a>
-    <a href="/log-out">log out</a>
-    <% if (locals.currentUser) { %>
-     <a href="/new-message">new message</a>
-    <% } %>
+    <div><%- include("./partials/welcome") %></div>
+    <div><%- include("./partials/navbar") %></div>
+    <ul>
+      <% locals.messages.forEach(message => { %>
+      <li>
+        date: <%= message.date %> title: <%= message.title %> user: <%=
+        message.user %>
+        <div><%= message.text %></div>
+      </li>
+      <% }) %>
+    </ul>
   </body>
 </html>

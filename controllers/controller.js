@@ -2,8 +2,21 @@ const db = require("../db/query");
 const { validationResult, matchedData } = require("express-validator");
 const bcrypt = require("bcryptjs");
 
-function getIndex(req, res) {
-  res.render("index");
+async function getIndex(req, res) {
+  const messages = await db.getAllMessages();
+
+  //hide usernames if user is not logged in
+  if (!req.user) {
+    messages.forEach((message) => {
+      message["user"] = "Anonymous";
+    });
+  } else {
+    for (const message of messages) {
+      const user = await db.findUserById(req.user.id);
+      message["user"] = user.username;
+    }
+  }
+  res.render("index", { messages: messages });
 }
 function getSignUp(req, res) {
   res.render("sign-up");
