@@ -12,7 +12,7 @@ async function getIndex(req, res) {
     });
   } else {
     for (const message of messages) {
-      const user = await db.findUserById(req.user.id);
+      const user = await db.findUserById(message.user_id);
       message["user"] = user.username;
     }
   }
@@ -35,7 +35,7 @@ async function postSignUp(req, res) {
     data.firstName,
     data.lastName,
     data.username,
-    hashedPassword
+    hashedPassword,
   );
   res.redirect("/log-in");
 }
@@ -82,6 +82,13 @@ async function postAdmin(req, res) {
   res.redirect("/");
 }
 
+async function getDeleteMessage(req, res) {
+  if (req.user.admin) {
+    await db.deleteMessage(req.params.messageId);
+    res.redirect("/");
+  }
+}
+
 module.exports = {
   getIndex,
   getSignUp,
@@ -93,4 +100,5 @@ module.exports = {
   postNewMessage,
   getAdmin,
   postAdmin,
+  getDeleteMessage,
 };

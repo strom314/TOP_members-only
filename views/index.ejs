@@ -15,6 +15,9 @@
         date: <%= message.date %> title: <%= message.title %> user: <%=
         message.user %>
         <div><%= message.text %></div>
+        <% if (locals.currentUser && currentUser.admin) { %>
+          <a href="/<%= message.id %>/delete">delete</a>
+        <% } %>
       </li>
       <% }) %>
     </ul>
