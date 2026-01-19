@@ -24,4 +24,7 @@ router.get("/log-out", controller.getLogOut);
 
 router.get("/new-message", controller.getNewMessage);
 router.post("/new-message", controller.postNewMessage);
+
+router.get("/admin", controller.getAdmin);
+router.post("/admin", controller.postAdmin);
 module.exports = router;

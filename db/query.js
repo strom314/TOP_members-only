@@ -1,9 +1,9 @@
 const pool = require("./pool");
 
-async function addUser(firstName, lastName, username, password, isAdmin) {
+async function addUser(firstName, lastName, username, password) {
   await pool.query(
     "INSERT INTO users(first_name, last_name, username, password, admin) VALUES ($1, $2, $3, $4, $5)",
-    [firstName, lastName, username, password, isAdmin]
+    [firstName, lastName, username, password, false]
   );
 }
 
@@ -32,10 +32,15 @@ async function getAllMessages() {
   return rows;
 }
 
+async function setAdmin(userId) {
+  await pool.query("UPDATE users SET admin = $1 WHERE id = $2", [true, userId]);
+}
+
 module.exports = {
   addUser,
   findUserByUsername,
   findUserById,
   addMessage,
   getAllMessages,
+  setAdmin,
 };

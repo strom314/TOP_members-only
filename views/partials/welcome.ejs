@@ -1,3 +1,5 @@
 <% if (locals.currentUser) { %>
 <h2>welcome <%= currentUser.first_name %></h2>
+<% } %> <% if (currentUser.admin) { %>
+<h2>you are admin</h2>
 <% } %>

@@ -35,8 +35,7 @@ async function postSignUp(req, res) {
     data.firstName,
     data.lastName,
     data.username,
-    hashedPassword,
-    data.isAdmin
+    hashedPassword
   );
   res.redirect("/log-in");
 }
@@ -72,6 +71,17 @@ async function postNewMessage(req, res) {
   res.redirect("/");
 }
 
+function getAdmin(req, res) {
+  res.render("admin");
+}
+
+async function postAdmin(req, res) {
+  if (req.body.passcode === process.env.ADMIN_PASSCODE) {
+    db.setAdmin(req.user.id);
+  }
+  res.redirect("/");
+}
+
 module.exports = {
   getIndex,
   getSignUp,
@@ -81,4 +91,6 @@ module.exports = {
   getLogOut,
   getNewMessage,
   postNewMessage,
+  getAdmin,
+  postAdmin,
 };
